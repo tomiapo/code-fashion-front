@@ -12,6 +12,14 @@ const SingleProduct = () => {
       <p>Product description</p>
       <p>Product price</p>
       <p>Product category</p>
+      <span>
+        <button> - </button>
+      </span>
+      <span>3</span>
+      <span>
+        <button>+</button>
+      </span>
+      <br />
       <button>Add to cart</button>
     </div>
   );

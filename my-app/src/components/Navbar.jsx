@@ -1,7 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const authToken = Cookies.get("authToken");
+  const handleLogout = () => {
+    axios
+      .post("http://localhost:8000/user/logout")
+      .then(() => {
+        Cookies.remove("authToken");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Error al deslogearte:", error);
+      });
+  };
   return (
     <nav className="bg-gray-800 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,18 +59,34 @@ const Navbar = () => {
           </div>
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
-              <Link
-                to="/login"
-                className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
-              >
-                Register
-              </Link>
+              {authToken ? (
+                <div className="flex items-center">
+                  <Link
+                    to="/user"
+                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+                  >
+                    Username
+                  </Link>
+                  <button className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2">
+                    Cerrar sesion
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <Link
+                    to="/login"
+                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
+                  >
+                    Register
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

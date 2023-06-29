@@ -15,7 +15,7 @@ const SingleProduct = () => {
       <span>
         <button> - </button>
       </span>
-      <span>4</span>
+      <span>3</span>
       <span>
         <button>+</button>
       </span>

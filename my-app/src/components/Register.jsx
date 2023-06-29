@@ -5,8 +5,6 @@ import { RegisterContext } from "../context/RegisterContext";
 const Register = () => {
   const { userToRegister, setRegisterInput, registerUserInDatabase } =
     useContext(RegisterContext);
-
-  console.log(userToRegister);
   return (
     <div className="flex items-center justify-center min-h-screen">
       <form className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md">

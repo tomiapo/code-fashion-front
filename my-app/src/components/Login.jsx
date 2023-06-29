@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
 // import { useNavigate } from 'react-router-dom'
 // cuando se inicie sesion correctamente redirigir a /home con navigate
 
 function Login() {
+  const { userToLogin, setLoginInput, loginUser } = useContext(LoginContext);
+  console.log(userToLogin);
   return (
     <div className="flex justify-center items-center h-screen">
       <form
@@ -17,10 +20,13 @@ function Login() {
             Usuario
           </label>
           <input
+            value={userToLogin.username}
+            onChange={setLoginInput}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
             placeholder="Username"
+            name="username"
           />
         </div>
         <div className="mb-6">
@@ -31,16 +37,20 @@ function Login() {
             Contraseña
           </label>
           <input
+            value={userToLogin.password}
+            onChange={setLoginInput}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
             placeholder="Password"
+            name="password"
           />
         </div>
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            onClick={loginUser}
           >
             Acceder
           </button>

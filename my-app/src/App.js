@@ -1,4 +1,5 @@
 import React, { StrictMode } from "react";
+import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <StrictMode>
         <CartProvider>
+          <ToastContainer />
           <Routes>
             <Route
               path="/register"

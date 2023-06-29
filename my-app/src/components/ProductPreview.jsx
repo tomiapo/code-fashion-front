@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import fakeDataProductor from "../utils/fakeDataProductor";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddToCartButton from "./AddToCartButton";
 
@@ -42,7 +41,6 @@ const ProductPreview = () => {
           </div>
         );
       })}
-      <ToastContainer />
     </div>
   );
 };

@@ -18,9 +18,11 @@ const ProductPreview = () => {
       {fakeDataProductor.map(({ name, description, price, image, brand }) => {
         const product = { name, description, price, image, brand };
         return (
-
-          <Link to={`/product/${name}`} key={name}>
-            <div className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105">
+          <div
+            key={name}
+            className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            <Link to={`/product/${name}`}>
               <div>
                 <img
                   src={image}
@@ -31,7 +33,6 @@ const ProductPreview = () => {
                 <p className="text-gray-500 mb-2">{description}</p>
                 <p className="text-gray-700 font-bold">${price}</p>
                 <p className="text-gray-500">{brand}</p>
-
               </div>
             </Link>
             <AddToCartButton

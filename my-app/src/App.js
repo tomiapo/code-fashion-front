@@ -38,26 +38,20 @@ function App() {
         <Route
           path="/"
           element={
-                      <CartProvider>
-
-            <ClickedProductContextProvider>
-              <ProductPreview />
-            </ClickedProductContextProvider>
-                        </CartProvider>
-
+            <CartProvider>
+              <ClickedProductContextProvider>
+                <ProductPreview />
+              </ClickedProductContextProvider>
+            </CartProvider>
           }
         />
-       
+
         <Route
           path="/product/:productName"
           element={
             <ClickedProductContextProvider>
               <SingleProduct />
             </ClickedProductContextProvider>
-
-            <CartProvider>
-              <ProductPreview />
-            </CartProvider>
           }
         />
         <Route

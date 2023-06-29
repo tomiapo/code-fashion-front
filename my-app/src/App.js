@@ -1,4 +1,3 @@
-import React, { StrictMode } from "react";
 import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/Register";
@@ -15,31 +14,41 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <StrictMode>
-        <CartProvider>
-          <ToastContainer />
-          <Routes>
-            <Route
-              path="/register"
-              element={
-                <RegisterContextProvider>
-                  <Register />
-                </RegisterContextProvider>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <LoginContextProvider>
-                  <Login />
-                </LoginContextProvider>
-              }
-            />
-            <Route path="/" element={<ProductPreview />} />
-            <Route path="/cart" element={<ShoppingCart />} />
-          </Routes>
-        </CartProvider>
-      </StrictMode>
+      <ToastContainer />
+      <Routes>
+        <Route
+          path="/register"
+          element={
+            <RegisterContextProvider>
+              <Register />
+            </RegisterContextProvider>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <LoginContextProvider>
+              <Login />
+            </LoginContextProvider>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <CartProvider>
+              <ProductPreview />
+            </CartProvider>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <CartProvider>
+              <ShoppingCart />
+            </CartProvider>
+          }
+        />
+      </Routes>
       <Footer />
     </div>
   );

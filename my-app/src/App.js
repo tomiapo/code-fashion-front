@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import RegisterContextProvider from "./context/RegisterContext";
 import LoginContextProvider from "./context/LoginContext";
+import ShoppingCart from "./components/Cart";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           }
         />
         <Route path="/" element={<ProductPreview />} />
+        <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
       <Footer />
     </div>

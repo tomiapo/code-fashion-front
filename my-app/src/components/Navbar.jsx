@@ -62,10 +62,10 @@ const Navbar = () => {
               {authToken ? (
                 <div className="flex items-center">
                   <Link
-                    to="/user"
+                    to="/cart"
                     className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
-                    Username
+                    My Cart
                   </Link>
                   <button
                     onClick={handleLogout}

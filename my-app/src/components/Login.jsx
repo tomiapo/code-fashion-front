@@ -5,7 +5,6 @@ import { LoginContext } from "../context/LoginContext";
 
 function Login() {
   const { userToLogin, setLoginInput, loginUser } = useContext(LoginContext);
-  console.log(userToLogin);
   return (
     <div className="flex justify-center items-center h-screen">
       <form

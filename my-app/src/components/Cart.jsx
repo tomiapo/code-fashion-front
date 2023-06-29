@@ -1,16 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const ShoppingCart = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const { cartItems, removeFromCart } = useContext(CartContext);
 
   const handleRemove = (index) => {
-    // Create a copy of the cart items array
-    const updatedCartItems = [...cartItems];
-    // Remove the product at the specified index
-    updatedCartItems.splice(index, 1);
-    // Update the cart items state
-    setCartItems(updatedCartItems);
+    removeFromCart(index);
   };
 
   return (
@@ -105,5 +100,4 @@ const ShoppingCart = () => {
     </div>
   );
 };
-
 export default ShoppingCart;

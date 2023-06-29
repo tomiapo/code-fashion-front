@@ -6,6 +6,7 @@ import ProductPreview from "./components/ProductPreview";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import RegisterContextProvider from "./context/RegisterContext";
+import LoginContextProvider from "./context/LoginContext";
 
 function App() {
   return (
@@ -20,7 +21,14 @@ function App() {
             </RegisterContextProvider>
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <LoginContextProvider>
+              <Login />
+            </LoginContextProvider>
+          }
+        />
         <Route path="/" element={<ProductPreview />} />
       </Routes>
       <Footer />

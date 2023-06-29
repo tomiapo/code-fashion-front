@@ -8,10 +8,10 @@ const Navbar = () => {
   const authToken = Cookies.get("authToken");
   const handleLogout = () => {
     axios
-      .post("http://localhost:8000/user/logout")
+      .post("http://localhost:8000/api/user/logout")
       .then(() => {
         Cookies.remove("authToken");
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         console.log("Error al deslogearte:", error);
@@ -62,12 +62,15 @@ const Navbar = () => {
               {authToken ? (
                 <div className="flex items-center">
                   <Link
-                    to="/user"
+                    to="/cart"
                     className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
-                    Username
+                    My Cart
                   </Link>
-                  <button className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2">
+                  <button
+                    onClick={handleLogout}
+                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
+                  >
                     Cerrar sesion
                   </button>
                 </div>

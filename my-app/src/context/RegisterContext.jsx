@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterContextDefaultValues = {
   firstname: "",
@@ -13,6 +14,7 @@ const RegisterContextDefaultValues = {
 export const RegisterContext = createContext(RegisterContextDefaultValues);
 
 const RegisterContextProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [userToRegister, setUserToRegister] = useState(
     RegisterContextDefaultValues
   );
@@ -31,6 +33,7 @@ const RegisterContextProvider = ({ children }) => {
       .catch((error) => {
         console.log(error);
       });
+    navigate("/login");
   };
 
   return (

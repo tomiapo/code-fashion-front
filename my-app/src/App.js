@@ -1,4 +1,4 @@
-import "./App.css";
+import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -10,10 +10,14 @@ import LoginContextProvider from "./context/LoginContext";
 import ShoppingCart from "./components/Cart";
 import SingleProduct from "./components/SingleProduct";
 import ClickedProductContextProvider from "./context/ClickedProductContext";
+
+import { CartProvider } from "./context/CartContext";
+
 function App() {
   return (
     <div className="App">
       <Navbar />
+      <ToastContainer />
       <Routes>
         <Route
           path="/register"
@@ -34,18 +38,34 @@ function App() {
         <Route
           path="/"
           element={
+                      <CartProvider>
+
             <ClickedProductContextProvider>
               <ProductPreview />
             </ClickedProductContextProvider>
+                        </CartProvider>
+
           }
         />
-        <Route path="/cart" element={<ShoppingCart />} />
+       
         <Route
           path="/product/:productName"
           element={
             <ClickedProductContextProvider>
               <SingleProduct />
             </ClickedProductContextProvider>
+
+            <CartProvider>
+              <ProductPreview />
+            </CartProvider>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <CartProvider>
+              <ShoppingCart />
+            </CartProvider>
           }
         />
       </Routes>

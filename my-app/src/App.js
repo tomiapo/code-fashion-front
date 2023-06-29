@@ -8,6 +8,9 @@ import Navbar from "./components/Navbar";
 import RegisterContextProvider from "./context/RegisterContext";
 import LoginContextProvider from "./context/LoginContext";
 import ShoppingCart from "./components/Cart";
+import SingleProduct from "./components/SingleProduct";
+import ClickedProductContextProvider from "./context/ClickedProductContext";
+
 import { CartProvider } from "./context/CartContext";
 
 function App() {
@@ -35,6 +38,23 @@ function App() {
         <Route
           path="/"
           element={
+                      <CartProvider>
+
+            <ClickedProductContextProvider>
+              <ProductPreview />
+            </ClickedProductContextProvider>
+                        </CartProvider>
+
+          }
+        />
+       
+        <Route
+          path="/product/:productName"
+          element={
+            <ClickedProductContextProvider>
+              <SingleProduct />
+            </ClickedProductContextProvider>
+
             <CartProvider>
               <ProductPreview />
             </CartProvider>

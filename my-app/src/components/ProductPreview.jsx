@@ -8,7 +8,7 @@ const ProductPreview = () => {
       {/* arreglar la url del Link cuando se defina */}
       {fakeDataProductor.map(({ name, description, price, image, brand }) => {
         return (
-          <Link to="/detalle-del-producto" key={name}>
+          <Link to={`/product/${name}`} key={name}>
             <div className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105">
               <div>
                 <img

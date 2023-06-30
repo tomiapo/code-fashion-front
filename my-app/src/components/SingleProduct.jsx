@@ -66,12 +66,26 @@ const SingleProduct = () => {
         alt="product_image"
         className="w-3/4 mx-auto"
       />
+<<<<<<< HEAD
       <p className="text-lg font-bold">{clickedProduct.name}</p>
       <p className="text-gray-700">{clickedProduct.description}</p>
       <p className="text-green-600 font-bold">${clickedProduct.price}</p>
       <p className="text-blue-500">Category: {clickedProduct.category_name}</p>
       <p className="text-gray-700">Brand: {clickedProduct.brand}</p>
 
+=======
+      <p>Product name</p>
+      <p>Product description</p>
+      <p>Product price</p>
+      <p>Product category</p>
+      <span>
+        <button> - </button>
+      </span>
+      <span>3</span>
+      <span>
+        <button>+</button>
+      </span>
+>>>>>>> main
       <br />
       <button
         className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"

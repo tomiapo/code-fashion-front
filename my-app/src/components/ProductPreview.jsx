@@ -37,7 +37,14 @@ const ProductPreview = () => {
             </Link>
             <AddToCartButton
               onClick={() =>
-                handleAddToCart({ name, description, price, image, brand })
+                handleAddToCart({
+                  name,
+                  description,
+                  price,
+                  image,
+                  brand,
+                  quantity: 1,
+                })
               }
               productName={name}
             />

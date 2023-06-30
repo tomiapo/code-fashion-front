@@ -4,23 +4,34 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [quantities, setQuantities] = useState([]);
+
   const [user, setUser] = useState(null); // User information
 
   useEffect(() => {
-    // Retrieve cart items from local storage on component mount
+    // Retrieve cart items and quantities from local storage on component mount
     const storedCartItems = localStorage.getItem("cartItems");
-    if (storedCartItems) {
+    const storedQuantities = localStorage.getItem("quantities");
+    if (storedCartItems && storedQuantities) {
       setCartItems(JSON.parse(storedCartItems));
+      setQuantities(JSON.parse(storedQuantities));
     }
   }, []);
+
+  useEffect(() => {
+    // Store cart items and quantities in local storage whenever they change
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("quantities", JSON.stringify(quantities));
+  }, [cartItems, quantities]);
 
   useEffect(() => {
     // Store cart items in local storage whenever it changes
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product) => {
+  const addToCart = (product, quantity) => {
     setCartItems((prevItems) => [...prevItems, product]);
+    setQuantities((prevQuantities) => [...prevQuantities, quantity]);
   };
 
   const removeFromCart = (index) => {
@@ -29,12 +40,18 @@ const CartProvider = ({ children }) => {
       updatedCartItems.splice(index, 1);
       return updatedCartItems;
     });
+
+    setQuantities((prevQuantities) => {
+      const updatedQuantities = [...prevQuantities];
+      updatedQuantities.splice(index, 1);
+      return updatedQuantities;
+    });
   };
 
   const clearCart = () => {
     setCartItems([]);
+    setQuantities([]);
   };
-
   const setUserInformation = (userInfo) => {
     setUser(userInfo);
   };
@@ -47,6 +64,7 @@ const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         user,
+        setCartItems,
         setUserInformation,
       }}
     >

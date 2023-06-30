@@ -1,12 +1,15 @@
-import React from "react";
-import fakeDataProductor from "../utils/fakeDataProductor";
+import React, { useContext } from "react";
+
 import { Link } from "react-router-dom";
+import { ProductContext } from "../context/ProductContext";
 
 const ProductPreview = () => {
+  const { products } = useContext(ProductContext);
+  console.log(products);
   return (
     <div className="grid grid-cols-3 gap-4">
       {/* arreglar la url del Link cuando se defina */}
-      {fakeDataProductor.map(({ name, description, price, image, brand }) => {
+      {products.map(({ name, description, price, image, brand }) => {
         return (
           <Link to="/detalle-del-producto" key={name}>
             <div className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105">

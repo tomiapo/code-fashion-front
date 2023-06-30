@@ -8,7 +8,7 @@ const AddToCartButton = ({ onClick, productName }) => {
   const notify = () => {
     toast.success(
       <div>
-        <strong>{productName}</strong> has been added to cart!
+        <strong>{productName}</strong> Agregado al carrito
       </div>,
       {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -31,7 +31,7 @@ const AddToCartButton = ({ onClick, productName }) => {
     } else {
       toast.info(
         <div>
-          <strong>{productName}</strong> is already in the cart!
+          <strong>{productName}</strong> Ya esta en el carrito!
         </div>,
         {
           position: toast.POSITION.BOTTOM_RIGHT,

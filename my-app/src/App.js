@@ -53,9 +53,11 @@ function App() {
         <Route
           path="/product/:productId"
           element={
-            <ClickedProductContextProvider>
-              <SingleProduct />
-            </ClickedProductContextProvider>
+            <CartProvider>
+              <ClickedProductContextProvider>
+                <SingleProduct />
+              </ClickedProductContextProvider>
+            </CartProvider>
           }
         />
         <Route

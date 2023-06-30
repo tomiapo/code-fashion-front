@@ -70,15 +70,15 @@ const SingleProduct = () => {
       <p className="text-lg font-bold">{clickedProduct.name}</p>
       <p className="text-gray-700">{clickedProduct.description}</p>
       <p className="text-green-600 font-bold">${clickedProduct.price}</p>
-      <p className="text-blue-500">Category: {clickedProduct.category_name}</p>
-      <p className="text-gray-700">Brand: {clickedProduct.brand}</p>
+      <p className="text-blue-500">Categoria: {clickedProduct.category_name}</p>
+      <p className="text-gray-700">Marca: {clickedProduct.brand}</p>
 
       <br />
       <button
         className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
         onClick={handleAddToCart}
       >
-        Add to cart
+        Agregar al carrito
       </button>
     </div>
   );

@@ -30,8 +30,8 @@ const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (product, quantity) => {
-    setCartItems((prevItems) => [...prevItems, product]);
     setQuantities((prevQuantities) => [...prevQuantities, quantity]);
+    setCartItems((prevItems) => [...prevItems, { ...product, quantity }]);
   };
 
   const removeFromCart = (index) => {

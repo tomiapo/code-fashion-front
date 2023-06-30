@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,6 +6,7 @@ import { CartContext } from "../context/CartContext";
 import { ClickedProductContext } from "../context/ClickedProductContext";
 
 const SingleProduct = () => {
+  const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
   const { clickedProduct, clickedProductHandler } = useContext(
     ClickedProductContext
@@ -36,7 +37,7 @@ const SingleProduct = () => {
         }
       );
     } else {
-      addToCart(clickedProduct);
+      addToCart(clickedProduct, quantity);
       notify();
     }
   };

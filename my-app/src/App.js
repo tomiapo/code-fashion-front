@@ -43,7 +43,7 @@ function App() {
             <CartProvider>
               <ClickedProductContextProvider>
                 <ProductProvider>
-                  <div className="h-screen">
+                  <div>
                     <ProductPreview />
                   </div>
                 </ProductProvider>

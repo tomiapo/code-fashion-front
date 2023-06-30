@@ -1,18 +1,26 @@
 import React, { useContext } from "react";
-
 import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
+import { CartContext } from "../context/CartContext";
+import "react-toastify/dist/ReactToastify.css";
+import AddToCartButton from "./AddToCartButton";
 
 const ProductPreview = () => {
+  const { addToCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
-  console.log(products);
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
   return (
     <div className="grid grid-cols-3 gap-4">
-      {/* arreglar la url del Link cuando se defina */}
       {products.map(({ name, description, price, image, brand }) => {
         return (
-          <Link to="/detalle-del-producto" key={name}>
-            <div className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105">
+          <div
+            key={name}
+            className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            <Link to={`/product/${name}`}>
               <div>
                 <img
                   src={image}
@@ -24,8 +32,12 @@ const ProductPreview = () => {
                 <p className="text-gray-700 font-bold">${price}</p>
                 <p className="text-gray-500">{brand}</p>
               </div>
-            </div>
-          </Link>
+            </Link>
+            <AddToCartButton
+              onClick={() => handleAddToCart(product)}
+              productName={name}
+            />
+          </div>
         );
       })}
     </div>

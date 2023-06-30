@@ -12,11 +12,13 @@ import SingleProduct from "./components/SingleProduct";
 import ClickedProductContextProvider from "./context/ClickedProductContext";
 
 import { CartProvider } from "./context/CartContext";
+import ProductProvider from "./context/ProductContext";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+
       <ToastContainer />
       <Routes>
         <Route
@@ -40,7 +42,9 @@ function App() {
           element={
             <CartProvider>
               <ClickedProductContextProvider>
+             <ProductProvider>
                 <ProductPreview />
+             </ProductProvider>
               </ClickedProductContextProvider>
             </CartProvider>
           }
@@ -63,6 +67,7 @@ function App() {
           }
         />
       </Routes>
+
       <Footer />
     </div>
   );

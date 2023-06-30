@@ -1,21 +1,20 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../context/ProductContext";
 import { CartContext } from "../context/CartContext";
-import fakeDataProductor from "../utils/fakeDataProductor";
 import "react-toastify/dist/ReactToastify.css";
 import AddToCartButton from "./AddToCartButton";
 
 const ProductPreview = () => {
   const { addToCart } = useContext(CartContext);
+  const { products } = useContext(ProductContext);
 
   const handleAddToCart = (product) => {
     addToCart(product);
   };
-
   return (
     <div className="grid grid-cols-3 gap-4">
-      {fakeDataProductor.map(({ name, description, price, image, brand }) => {
-        const product = { name, description, price, image, brand };
+      {products.map(({ name, description, price, image, brand }) => {
         return (
           <div
             key={name}

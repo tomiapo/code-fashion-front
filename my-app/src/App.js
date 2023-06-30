@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/Register";
@@ -14,15 +13,10 @@ import ClickedProductContextProvider from "./context/ClickedProductContext";
 
 import { CartProvider } from "./context/CartContext";
 import ProductProvider from "./context/ProductContext";
-=======
-import logo from './logo.svg';
-import './App.css';
->>>>>>> main
 
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
       <Navbar />
 
       <ToastContainer />
@@ -77,22 +71,6 @@ function App() {
       </Routes>
 
       <Footer />
-=======
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
->>>>>>> main
     </div>
   );
 }

@@ -29,25 +29,25 @@ const ShoppingCart = () => {
 
   return (
     <div className="bg-gray-100 py-4 px-6 ">
-      <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+      <h2 className="text-2xl font-bold mb-4">Carrito de Compras</h2>
       <div className="bg-white rounded shadow overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-100">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Product
+                Producto
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Price
+                Precio
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Quantity
+                Cantidad
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Total
               </th>
               <th className="relative px-6 py-3">
-                <span className="sr-only">Remove</span>
+                <span className="sr-only">Eliminar</span>
               </th>
             </tr>
           </thead>
@@ -55,7 +55,7 @@ const ShoppingCart = () => {
             {cartItems.length === 0 ? (
               <tr>
                 <td className="px-6 py-4 whitespace-nowrap" colSpan="5">
-                  No items in the cart
+                  No hay productos en el carrito
                 </td>
               </tr>
             ) : (
@@ -105,7 +105,7 @@ const ShoppingCart = () => {
                       className="text-red-500 hover:text-red-700"
                       onClick={() => handleRemove(index)}
                     >
-                      Remove
+                      Eliminar
                     </button>
                   </td>
                 </tr>

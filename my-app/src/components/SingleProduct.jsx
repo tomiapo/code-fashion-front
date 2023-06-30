@@ -23,7 +23,7 @@ const SingleProduct = () => {
     if (isInCart) {
       toast.info(
         <div>
-          <strong>{clickedProduct.name}</strong> is already in the cart!
+          <strong>{clickedProduct.name}</strong> Ya esta en el carrito!
         </div>,
         {
           position: toast.POSITION.BOTTOM_RIGHT,
@@ -45,7 +45,7 @@ const SingleProduct = () => {
   const notify = () => {
     toast.success(
       <div>
-        <strong>{clickedProduct.name}</strong> has been added to your cart!
+        <strong>{clickedProduct.name}</strong> Agregado al carrito
       </div>,
       {
         position: toast.POSITION.BOTTOM_RIGHT,

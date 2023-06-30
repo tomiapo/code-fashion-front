@@ -9,6 +9,7 @@ import RegisterContextProvider from "./context/RegisterContext";
 import LoginContextProvider from "./context/LoginContext";
 import ShoppingCart from "./components/Cart";
 import { CartProvider } from "./context/CartContext";
+import ProductProvider from "./context/ProductContext";
 
 function App() {
   return (
@@ -33,7 +34,14 @@ function App() {
                 </LoginContextProvider>
               }
             />
-            <Route path="/" element={<ProductPreview />} />
+            <Route
+              path="/"
+              element={
+                <ProductProvider>
+                  <ProductPreview />
+                </ProductProvider>
+              }
+            />
             <Route path="/cart" element={<ShoppingCart />} />
           </Routes>
         </CartProvider>

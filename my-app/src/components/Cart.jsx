@@ -1,25 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 const ShoppingCart = () => {
-  const { cartItems, removeFromCart } = useContext(CartContext);
-  const [quantities, setQuantities] = useState(Array(cartItems.length).fill(1));
-
+  const { cartItems, removeFromCart, setCartItems } = useContext(CartContext);
   const handleRemove = (index) => {
     removeFromCart(index);
   };
 
   const handleQuantityChange = (index, value) => {
-    const newQuantities = [...quantities];
-    if (value > 0) {
-      newQuantities[index] = parseInt(value, 10);
-      setQuantities(newQuantities);
+    const newCartItems = [...cartItems];
+    const newQuantity = parseInt(value, 10);
+
+    if (newQuantity > 0) {
+      newCartItems[index].quantity = newQuantity;
+      setCartItems(newCartItems);
     }
   };
 
   const calculateTotal = (index) => {
     const product = cartItems[index];
-    return product.price * quantities[index];
+    return product.price * product.quantity;
   };
 
   const totalPrice = cartItems.reduce(
@@ -28,7 +28,7 @@ const ShoppingCart = () => {
   );
 
   return (
-    <div className="bg-gray-100 py-4 px-6">
+    <div className="bg-gray-100 py-4 px-6 ">
       <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
       <div className="bg-white rounded shadow overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
@@ -89,7 +89,7 @@ const ShoppingCart = () => {
                     <input
                       type="number"
                       className="w-16 border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                      value={quantities[index]}
+                      value={product.quantity}
                       onChange={(e) =>
                         handleQuantityChange(index, e.target.value)
                       }

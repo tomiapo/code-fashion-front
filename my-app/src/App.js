@@ -43,7 +43,9 @@ function App() {
             <CartProvider>
               <ClickedProductContextProvider>
                 <ProductProvider>
-                  <ProductPreview />
+                  <div className="h-screen">
+                    <ProductPreview />
+                  </div>
                 </ProductProvider>
               </ClickedProductContextProvider>
             </CartProvider>
@@ -64,7 +66,9 @@ function App() {
           path="/cart"
           element={
             <CartProvider>
-              <ShoppingCart />
+              <div className="h-screen">
+                <ShoppingCart />
+              </div>
             </CartProvider>
           }
         />

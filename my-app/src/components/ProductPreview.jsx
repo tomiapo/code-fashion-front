@@ -13,7 +13,7 @@ const ProductPreview = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-4 shadow-lg py-4">
       {products.length === 0 ? (
         <p>No items to show</p>
       ) : (

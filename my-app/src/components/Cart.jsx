@@ -1,12 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 
 const ShoppingCart = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
+  const [quantities, setQuantities] = useState(Array(cartItems.length).fill(1));
 
   const handleRemove = (index) => {
     removeFromCart(index);
   };
+
+  const handleQuantityChange = (index, value) => {
+    const newQuantities = [...quantities];
+    if (value > 0) {
+      newQuantities[index] = parseInt(value, 10);
+      setQuantities(newQuantities);
+    }
+  };
+
+  const calculateTotal = (index) => {
+    const product = cartItems[index];
+    return product.price * quantities[index];
+  };
+
+  const totalPrice = cartItems.reduce(
+    (acc, _, index) => acc + calculateTotal(index),
+    0
+  );
 
   return (
     <div className="bg-gray-100 py-4 px-6">
@@ -70,12 +89,15 @@ const ShoppingCart = () => {
                     <input
                       type="number"
                       className="w-16 border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                      defaultValue="1"
+                      value={quantities[index]}
+                      onChange={(e) =>
+                        handleQuantityChange(index, e.target.value)
+                      }
                     />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      ${product.price}
+                      ${calculateTotal(index)}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -97,7 +119,11 @@ const ShoppingCart = () => {
           Checkout
         </button>
       </div>
+      <div className="mt-4 text-right text-gray-900 font-medium">
+        Total Price: ${totalPrice}
+      </div>
     </div>
   );
 };
+
 export default ShoppingCart;

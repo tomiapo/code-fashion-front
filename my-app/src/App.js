@@ -42,16 +42,16 @@ function App() {
           element={
             <CartProvider>
               <ClickedProductContextProvider>
-             <ProductProvider>
-                <ProductPreview />
-             </ProductProvider>
+                <ProductProvider>
+                  <ProductPreview />
+                </ProductProvider>
               </ClickedProductContextProvider>
             </CartProvider>
           }
         />
 
         <Route
-          path="/product/:productName"
+          path="/product/:productId"
           element={
             <ClickedProductContextProvider>
               <SingleProduct />

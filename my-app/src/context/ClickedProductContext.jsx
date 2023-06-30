@@ -1,15 +1,7 @@
 import { createContext, useState } from "react";
-import fakeDataProductor from "../utils/fakeDataProductor";
+import axios from "axios";
 
-const ClickedProductContextDefaultValues = {
-  name: "",
-  price: null,
-  description: "",
-  image: "",
-  stock: null,
-  category_name: "",
-  brand: "",
-};
+const ClickedProductContextDefaultValues = {};
 
 export const ClickedProductContext = createContext(
   ClickedProductContextDefaultValues
@@ -20,12 +12,13 @@ const ClickedProductContextProvider = ({ children }) => {
     ClickedProductContextDefaultValues
   );
 
-  const clickedProductHandler = (name) => {
-    const selectedProduct = fakeDataProductor.filter(
-      (product) => product.name === name
-    )[0];
-
-    setClickedProduct(selectedProduct);
+  const clickedProductHandler = async (id) => {
+    await axios
+      .get(`http://localhost:8000/api/products/${id}`)
+      .then((response) => response.data)
+      .then((product) => {
+        setClickedProduct(product);
+      });
   };
 
   return (

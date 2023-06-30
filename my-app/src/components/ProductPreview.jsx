@@ -8,7 +8,6 @@ import AddToCartButton from "./AddToCartButton";
 const ProductPreview = () => {
   const { addToCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
-
   const handleAddToCart = (product) => {
     addToCart(product);
   };
@@ -18,12 +17,12 @@ const ProductPreview = () => {
       {products.length === 0 ? (
         <p>No items to show</p>
       ) : (
-        products.map(({ name, description, price, image, brand }) => (
+        products.map(({ id, name, description, price, image, brand }) => (
           <div
             key={name}
             className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105"
           >
-            <Link to={`/product/${name}`}>
+            <Link to={`/product/${id}`}>
               <div>
                 <img
                   src={image}

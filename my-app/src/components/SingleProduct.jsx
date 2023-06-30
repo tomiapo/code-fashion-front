@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import { ClickedProductContext } from "../context/ClickedProductContext";
 
 const SingleProduct = () => {
-  const { productName } = useParams();
+  const { productId } = useParams();
   const { clickedProduct, clickedProductHandler } = useContext(
     ClickedProductContext
   );
 
   useEffect(() => {
-    clickedProductHandler(productName);
+    clickedProductHandler(productId);
   }, []);
 
   return (

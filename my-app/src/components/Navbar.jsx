@@ -34,13 +34,13 @@ const Navbar = () => {
                   to="/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Home
+                  Inicio
                 </Link>
                 <Link
                   to="/about"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  About Us
+                  Acerca de Nosotros{" "}
                 </Link>
                 <Link
                   to="/category/hombre"
@@ -65,7 +65,7 @@ const Navbar = () => {
                     to="/cart"
                     className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
-                    My Cart
+                    Carrito
                   </Link>
                   <button
                     onClick={handleLogout}
@@ -80,13 +80,13 @@ const Navbar = () => {
                     to="/login"
                     className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
-                    Login
+                    Iniciar Sesión
                   </Link>
                   <Link
                     to="/register"
                     className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
                   >
-                    Register
+                    Registrarse
                   </Link>
                 </div>
               )}

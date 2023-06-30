@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import { CartContext } from "../context/CartContext";
@@ -12,10 +12,13 @@ const ProductPreview = () => {
   const handleAddToCart = (product) => {
     addToCart(product);
   };
+
   return (
     <div className="grid grid-cols-3 gap-4">
-      {products.map(({ name, description, price, image, brand }) => {
-        return (
+      {products.length === 0 ? (
+        <p>No items to show</p>
+      ) : (
+        products.map(({ name, description, price, image, brand }) => (
           <div
             key={name}
             className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105"
@@ -34,12 +37,14 @@ const ProductPreview = () => {
               </div>
             </Link>
             <AddToCartButton
-              onClick={() => handleAddToCart(product)}
+              onClick={() =>
+                handleAddToCart({ name, description, price, image, brand })
+              }
               productName={name}
             />
           </div>
-        );
-      })}
+        ))
+      )}
     </div>
   );
 };

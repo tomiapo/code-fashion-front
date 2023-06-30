@@ -28,7 +28,7 @@ const ShoppingCart = () => {
   );
 
   return (
-    <div className="bg-gray-100 py-4 px-6">
+    <div className="bg-gray-100 py-4 px-6 ">
       <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
       <div className="bg-white rounded shadow overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">

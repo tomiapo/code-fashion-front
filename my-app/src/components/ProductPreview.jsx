@@ -35,19 +35,6 @@ const ProductPreview = () => {
                 <p className="text-gray-500">{brand}</p>
               </div>
             </Link>
-            <AddToCartButton
-              onClick={() =>
-                handleAddToCart({
-                  name,
-                  description,
-                  price,
-                  image,
-                  brand,
-                  quantity: 1,
-                })
-              }
-              productName={name}
-            />
           </div>
         ))
       )}

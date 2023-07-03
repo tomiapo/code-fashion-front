@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import ProductPreview from "./components/ProductPreview";
+import OrdersHistory from "./components/OrdersHistory";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import RegisterContextProvider from "./context/RegisterContext";
@@ -13,6 +14,7 @@ import ClickedProductContextProvider from "./context/ClickedProductContext";
 
 import { CartProvider } from "./context/CartContext";
 import ProductProvider from "./context/ProductContext";
+import OrderProvider from "./context/OrderContext";
 
 function App() {
   return (
@@ -70,6 +72,14 @@ function App() {
                 <ShoppingCart />
               </div>
             </CartProvider>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <OrderProvider>
+              <OrdersHistory />
+            </OrderProvider>
           }
         />
       </Routes>

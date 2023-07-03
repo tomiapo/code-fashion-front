@@ -4,6 +4,12 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../context/CartContext";
 import { ClickedProductContext } from "../context/ClickedProductContext";
+import { isLoggedIn } from "../utils/login.utils.js";
+import {
+  notifyToLoginWhenAddingToCart,
+  notifyProductAlreadyInCart,
+  notifyProductAddedToCart,
+} from "../utils/notification.utils";
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
@@ -15,49 +21,22 @@ const SingleProduct = () => {
 
   useEffect(() => {
     clickedProductHandler(productId);
-  }, [clickedProductHandler, productId]);
+  }, []);
 
   const handleAddToCart = () => {
     const isInCart = cartItems.find((item) => item.id === clickedProduct.id);
+    if (!isLoggedIn()) {
+      notifyToLoginWhenAddingToCart();
+      return;
+    }
 
     if (isInCart) {
-      toast.info(
-        <div>
-          <strong>{clickedProduct.name}</strong> Ya esta en el carrito!
-        </div>,
-        {
-          position: toast.POSITION.BOTTOM_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          toastClassName:
-            "bg-blue-500 text-white font-bold flex items-center p-4 rounded-md",
-        }
-      );
+      notifyProductAlreadyInCart(clickedProduct.name);
+      return;
     } else {
       addToCart(clickedProduct, quantity);
-      notify();
+      notifyProductAddedToCart(clickedProduct.name);
     }
-  };
-
-  const notify = () => {
-    toast.success(
-      <div>
-        <strong>{clickedProduct.name}</strong> Agregado al carrito
-      </div>,
-      {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        toastClassName:
-          "bg-green-500 text-white font-bold flex items-center p-4 rounded-md",
-      }
-    );
   };
 
   return (

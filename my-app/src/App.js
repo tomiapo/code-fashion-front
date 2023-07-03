@@ -15,6 +15,8 @@ import ClickedProductContextProvider from "./context/ClickedProductContext";
 import { CartProvider } from "./context/CartContext";
 import ProductProvider from "./context/ProductContext";
 import OrderProvider from "./context/OrderContext";
+import Admin from "./components/Admin";
+
 
 function App() {
   return (
@@ -45,9 +47,7 @@ function App() {
             <CartProvider>
               <ClickedProductContextProvider>
                 <ProductProvider>
-                  <div className="h-screen">
-                    <ProductPreview />
-                  </div>
+                  <ProductPreview />
                 </ProductProvider>
               </ClickedProductContextProvider>
             </CartProvider>
@@ -74,6 +74,7 @@ function App() {
             </CartProvider>
           }
         />
+
         <Route
           path="/orders"
           element={
@@ -82,6 +83,9 @@ function App() {
             </OrderProvider>
           }
         />
+
+        <Route path="/admin" element={<Admin />} />
+
       </Routes>
 
       <Footer />

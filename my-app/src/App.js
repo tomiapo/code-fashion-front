@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import ProductPreview from "./components/ProductPreview";
+import OrdersHistory from "./components/OrdersHistory";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import RegisterContextProvider from "./context/RegisterContext";
@@ -15,6 +16,9 @@ import CheckoutConfirmed from "./components/CheckoutConfirmed";
 
 import { CartProvider } from "./context/CartContext";
 import ProductProvider from "./context/ProductContext";
+import OrderProvider from "./context/OrderContext";
+import Admin from "./components/Admin";
+
 
 function App() {
   return (
@@ -45,9 +49,7 @@ function App() {
             <CartProvider>
               <ClickedProductContextProvider>
                 <ProductProvider>
-                  <div className="h-screen">
-                    <ProductPreview />
-                  </div>
+                  <ProductPreview />
                 </ProductProvider>
               </ClickedProductContextProvider>
             </CartProvider>
@@ -92,6 +94,18 @@ function App() {
             </div>
           }
         ></Route>
+
+        <Route
+          path="/orders"
+          element={
+            <OrderProvider>
+              <OrdersHistory />
+            </OrderProvider>
+          }
+        />
+
+        <Route path="/admin" element={<Admin />} />
+
       </Routes>
 
       <Footer />

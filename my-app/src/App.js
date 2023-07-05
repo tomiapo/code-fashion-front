@@ -10,6 +10,8 @@ import LoginContextProvider from "./context/LoginContext";
 import ShoppingCart from "./components/Cart";
 import SingleProduct from "./components/SingleProduct";
 import ClickedProductContextProvider from "./context/ClickedProductContext";
+import Checkout from "./components/Checkout";
+import CheckoutConfirmed from "./components/CheckoutConfirmed";
 
 import { CartProvider } from "./context/CartContext";
 import ProductProvider from "./context/ProductContext";
@@ -72,6 +74,24 @@ function App() {
             </CartProvider>
           }
         />
+        <Route
+          path="/checkout"
+          element={
+            <CartProvider>
+              <div className="h-screen">
+                <Checkout />
+              </div>
+            </CartProvider>
+          }
+        ></Route>
+        <Route
+          path="/checkout/confirmation"
+          element={
+            <div className="h-screen">
+              <CheckoutConfirmed />
+            </div>
+          }
+        ></Route>
       </Routes>
 
       <Footer />

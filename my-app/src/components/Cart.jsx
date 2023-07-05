@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
   const { cartItems, removeFromCart, setCartItems } = useContext(CartContext);
@@ -115,9 +116,12 @@ const ShoppingCart = () => {
         </table>
       </div>
       <div className="flex justify-end mt-4">
-        <button className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500">
-          Checkout
-        </button>
+        <Link
+          to="/checkout"
+          className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500"
+        >
+          <button>Checkout</button>
+        </Link>
       </div>
       <div className="mt-4 text-right text-gray-900 font-medium">
         Total Price: ${totalPrice}

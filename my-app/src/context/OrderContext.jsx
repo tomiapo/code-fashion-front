@@ -10,11 +10,16 @@ const OrderProvider = ({ children }) => {
   useEffect(() => {
     orderPreview();
   }, []);
-  const orderPreview = () => {
-    axios
-      .get("http://localhost:8000/api/orderhistory/list")
-      .then((res) => setOrders(res.data))
-      .catch((error) => console.log(error));
+  const orderPreview = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/orderhistory/list"
+      );
+      setOrders(response.data);
+      return;
+    } catch (error) {
+      return { msg: "Error retrieving orders", error };
+    }
   };
   return (
     <ProductContext.Provider value={{ orders }}>

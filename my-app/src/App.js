@@ -18,7 +18,11 @@ import { CartProvider } from "./context/CartContext";
 import ProductProvider from "./context/ProductContext";
 import OrderProvider from "./context/OrderContext";
 import Admin from "./components/Admin";
+
 import Profile from "./components/Profile";
+
+import SuperAdmin from "./components/SuperAdmin";
+
 
 function App() {
   return (
@@ -105,7 +109,11 @@ function App() {
         />
 
         <Route path="/admin" element={<Admin />} />
+
         <Route path="/profile" element={<Profile />} />
+
+        <Route path="/superadmin" element={<SuperAdmin />} />
+
       </Routes>
 
       <Footer />

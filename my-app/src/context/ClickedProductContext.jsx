@@ -13,12 +13,16 @@ const ClickedProductContextProvider = ({ children }) => {
   );
 
   const clickedProductHandler = async (id) => {
-    await axios
-      .get(`http://localhost:8000/api/products/${id}`)
-      .then((response) => response.data)
-      .then((product) => {
-        setClickedProduct(product);
-      });
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/products/${id}`
+      );
+      const product = response.data;
+      setClickedProduct(product);
+      return;
+    } catch (error) {
+      return { msg: "Error when setting a product", error };
+    }
   };
 
   return (

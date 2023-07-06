@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +8,25 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const authToken = Cookies.get("authToken");
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+
+  useEffect(() => {
+    async function fetchUserRole() {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/superadmin/users",
+          {
+            withCredentials: true,
+          }
+        );
+        setIsSuperAdmin(response.data.is_super_admin);
+      } catch (error) 
+      }
+    }
+
+    fetchUserRole();
+  }, []);
+
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:8000/api/user/logout");
@@ -55,6 +74,22 @@ const Navbar = () => {
                 >
                   Mujer
                 </Link>
+                {authToken && (
+                  <Link
+                    to="/orders"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Mis ordenes
+                  </Link>
+                )}
+                {setIsSuperAdmin && (
+                  <Link
+                    to="/superadmin"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    SuperAdmin Panel
+                  </Link>
+                )}
               </div>
             </div>
           </div>

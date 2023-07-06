@@ -49,3 +49,16 @@ export const notifyProductAddedToCart = (productName) => {
     }
   );
 };
+
+export const notifyProductReview = () => {
+  toast.error("Inicia sesión para agregar una valoracion", {
+    position: toast.POSITION.BOTTOM_RIGHT,
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    toastClassName:
+      "bg-red-500 text-white font-bold flex items-center p-4 rounded-md",
+  });
+};

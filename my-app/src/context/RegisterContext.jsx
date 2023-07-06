@@ -3,8 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const RegisterContextDefaultValues = {
-  firstname: "",
-  lastname: "",
+  first_name: "",
+  last_name: "",
   username: "",
   email: "",
   password: "",

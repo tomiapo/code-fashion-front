@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,26 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const authToken = Cookies.get("authToken");
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+
+  useEffect(() => {
+    async function fetchUserRole() {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/superadmin/users",
+          {
+            withCredentials: true,
+          }
+        );
+        setIsSuperAdmin(response.data.is_super_admin);
+      } catch (error) {
+        // Handle error
+      }
+    }
+
+    fetchUserRole();
+  }, []);
+
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:8000/api/user/logout");
@@ -39,7 +59,7 @@ const Navbar = () => {
                   to="/about"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Acerca de Nosotros{" "}
+                  Acerca de Nosotros
                 </Link>
                 <Link
                   to="/category/hombre"
@@ -61,6 +81,14 @@ const Navbar = () => {
                     Mis ordenes
                   </Link>
                 )}
+                {setIsSuperAdmin && (
+                  <Link
+                    to="/superadmin"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    SuperAdmin Panel
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -70,13 +98,13 @@ const Navbar = () => {
                 <div className="flex items-center">
                   <Link
                     to="/cart"
-                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+                    className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
                     Carrito
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
+                    className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
                   >
                     Cerrar sesion
                   </button>
@@ -85,13 +113,13 @@ const Navbar = () => {
                 <div>
                   <Link
                     to="/login"
-                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+                    className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium"
                   >
                     Iniciar Sesión
                   </Link>
                   <Link
                     to="/register"
-                    className=" bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
+                    className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium ml-2"
                   >
                     Registrarse
                   </Link>

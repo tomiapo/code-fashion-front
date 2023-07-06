@@ -5,60 +5,69 @@ const SuperAdmin = () => {
   const [users, setUsers] = useState([]);
   const [hasAccess, setHasAccess] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/superadmin/users", {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          setUsers(response.data);
-          setHasAccess(true);
-        } else if (response.status === 403) {
-          setHasAccess(false);
+  useEffect(async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/superadmin/users",
+        {
+          withCredentials: true,
         }
-      })
-      .catch((error) => console.log("Error retrieving users:", error));
+      );
+
+      if (response.status === 200) {
+        setUsers(response.data);
+        setHasAccess(true);
+      } else if (response.status === 403) {
+        setHasAccess(false);
+      }
+      return;
+    } catch (error) {
+      return { msg: "Error retrieving users", error };
+    }
   }, []);
 
-  const promoteToAdmin = (userId) => {
-    axios
-      .get(`http://localhost:8000/api/superadmin/promote/${userId}`, {
-        withCredentials: true,
-      })
-      .then(() => {
-        // Refresh the user list
-        setUsers((prevUsers) =>
-          prevUsers.map((user) => {
-            if (user.id === userId) {
-              return { ...user, is_seller: true };
-            }
-            return user;
-          })
-        );
-      })
-      .catch((error) => console.log("Failed to promote user:", error));
+  const promoteToAdmin = async (userId) => {
+    try {
+      await axios.get(
+        `http://localhost:8000/api/superadmin/promote/${userId}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setUsers((prevUsers) =>
+        prevUsers.map((user) => {
+          if (user.id === userId) {
+            return { ...user, is_seller: true };
+          }
+          return user;
+        })
+      );
+      return;
+    } catch (error) {
+      return { msg: "Failed to promote user", error };
+    }
   };
 
-  const revokeAdminPrivileges = (userId) => {
-    axios
-      .post(`http://localhost:8000/api/superadmin/revoke/${userId}`, null, {
-        withCredentials: true,
-      })
-      .then(() => {
-        // Refresh the user list
-        setUsers((prevUsers) =>
-          prevUsers.map((user) => {
-            if (user.id === userId) {
-              return { ...user, is_seller: false };
-            }
-            return user;
-          })
-        );
-      })
-      .catch((error) =>
-        console.log("Failed to revoke user privileges:", error)
+  const revokeAdminPrivileges = async (userId) => {
+    try {
+      await axios.post(
+        `http://localhost:8000/api/superadmin/revoke/${userId}`,
+        null,
+        {
+          withCredentials: true,
+        }
       );
+      setUsers((prevUsers) =>
+        prevUsers.map((user) => {
+          if (user.id === userId) {
+            return { ...user, is_seller: false };
+          }
+          return user;
+        })
+      );
+    } catch (error) {
+      return { msg: "Failed to revoke user privileges", error };
+    }
   };
 
   return (

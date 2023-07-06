@@ -6,16 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const authToken = Cookies.get("authToken");
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8000/api/user/logout")
-      .then(() => {
-        Cookies.remove("authToken");
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log("Error al deslogearte:", error);
-      });
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/user/logout");
+      Cookies.remove("authToken");
+      navigate("/login");
+      return;
+    } catch (error) {
+      return { msg: "Error al desloguearse", error };
+    }
   };
   return (
     <nav className="bg-gray-800 shadow-lg">

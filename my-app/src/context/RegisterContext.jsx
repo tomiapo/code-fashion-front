@@ -22,18 +22,20 @@ const RegisterContextProvider = ({ children }) => {
     setUserToRegister({ ...userToRegister, [e.target.name]: e.target.value });
   };
 
-  const registerUserInDatabase = (e) => {
+  const registerUserInDatabase = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:8000/api/user/create-user", { ...userToRegister })
-      .then(() => {
-        alert("User created successfully");
-        setUserToRegister(RegisterContextDefaultValues);
-      })
-      .catch((error) => {
-        console.log(error);
+
+    try {
+      await axios.post("http://localhost:8000/api/user/create-user", {
+        ...userToRegister,
       });
-    navigate("/login");
+      alert("Usuario creado con exito");
+      setUserToRegister(RegisterContextDefaultValues);
+      navigate("/login");
+      return;
+    } catch (error) {
+      return { msg: "Error registering user", error };
+    }
   };
 
   return (

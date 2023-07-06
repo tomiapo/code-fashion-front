@@ -5,29 +5,36 @@ const Admin = () => {
   const [users, setUsers] = useState([]);
   const [hasAccess, setHasAccess] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/admin/users", {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          setUsers(response.data);
-          setHasAccess(true);
-        } else if (response.status === 403) {
-          setHasAccess(false);
+  useEffect(async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/admin/users",
+        {
+          withCredentials: true,
         }
-      })
-      .catch((error) => console.log("Error retrieving users:", error));
+      );
+      if (response.status === 200) {
+        setUsers(response.data);
+        setHasAccess(true);
+      } else if (response.status === 403) {
+        setHasAccess(false);
+      }
+      return;
+    } catch (error) {
+      return { msg: "Error retrieving users", error };
+    }
   }, []);
 
-  const handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:8000/api/admin/users/${id}`, {
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/admin/users/${id}`, {
         withCredentials: true,
-      })
-      .then(() => setUsers(users.filter((user) => user.id !== id)))
-      .catch((error) => console.log("error deleting a user:", error));
+      });
+      setUsers(users.filter((user) => user.id !== id));
+      return;
+    } catch (error) {
+      return { msg: "error deleting an user", error };
+    }
   };
 
   return (

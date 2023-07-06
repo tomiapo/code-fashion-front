@@ -16,21 +16,21 @@ const LoginContextProvider = ({ children }) => {
     setuserToLogin({ ...userToLogin, [e.target.name]: e.target.value });
   };
 
-  const loginUser = (e) => {
+  const loginUser = async (e) => {
     e.preventDefault();
-    axios
-      .post(
+    try {
+      await axios.post(
         "http://localhost:8000/api/user/login",
         { ...userToLogin },
         { withCredentials: true }
-      )
-      .then(() => {
-        setuserToLogin(LoginContextDefaultValues);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      );
+
+      setuserToLogin(LoginContextDefaultValues);
+      navigate("/");
+      return;
+    } catch (error) {
+      return { msg: "Error at login attempt", error };
+    }
   };
 
   return (

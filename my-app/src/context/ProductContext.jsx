@@ -10,13 +10,15 @@ const ProductProvider = ({ children }) => {
     productPreview();
   }, []);
 
-  const productPreview = () => {
-    axios
-      .get("http://localhost:8000/api/products")
-      .then((response) => setProducts(response.data))
-      .catch((error) => console.log("error al traer los productos:", error));
+  const productPreview = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/products");
+      setProducts(response.data);
+    } catch (error) {
+      return { msg: "Error retrieving products", error };
+    }
   };
-  console.log(products);
+
   return (
     <ProductContext.Provider value={{ products }}>
       {children}

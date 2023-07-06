@@ -49,8 +49,7 @@ const Admin = () => {
             >
               <div>
                 <div className="text-sm font-medium text-gray-900">
-                  {user.firstname}
-                  {user.lastname}
+                  {user.first_name}_{user.last_name}
                 </div>
                 <div className="text-sm text-gray-500">{user.email}</div>
               </div>

@@ -12,6 +12,7 @@ const Navbar = () => {
     try {
       await axios.post("http://localhost:8000/api/user/logout");
       Cookies.remove("authToken");
+      localStorage.clear();
       navigate("/login");
       return;
     } catch (error) {

@@ -8,24 +8,6 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const authToken = Cookies.get("authToken");
-  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
-
-  useEffect(() => {
-    async function fetchUserRole() {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/api/superadmin/users",
-          {
-            withCredentials: true,
-          }
-        );
-        setIsSuperAdmin(response.data.is_super_admin);
-      } catch (error) 
-      }
-    }
-
-    fetchUserRole();
-  }, []);
 
   const handleLogout = async () => {
     try {
@@ -37,12 +19,13 @@ const Navbar = () => {
       return { msg: "Error al desloguearse", error };
     }
   };
+
   return (
-    <nav className="bg-gray-800 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className=" bg-gray-800 relative shadow-lg z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
+          <div className="flex relative items-center">
+            <div className="flex-shrink-0 relative">
               <Link to="/" className="text-white text-lg font-semibold">
                 <span className="text-indigo-500">{"<Code"}</span>
                 Fashion<span className="text-indigo-500">{" />"}</span>
@@ -74,22 +57,6 @@ const Navbar = () => {
                 >
                   Mujer
                 </Link>
-                {authToken && (
-                  <Link
-                    to="/orders"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Mis ordenes
-                  </Link>
-                )}
-                {setIsSuperAdmin && (
-                  <Link
-                    to="/superadmin"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    SuperAdmin Panel
-                  </Link>
-                )}
               </div>
             </div>
           </div>
@@ -102,48 +69,27 @@ const Navbar = () => {
                       <button
                         onClick={() => setUserMenuOpen(!userMenuOpen)}
                         type="button"
-                        className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium focus:outline-none"
+                        className="bg-indigo-600 relative text-white px-4 py-2 rounded-md text-sm font-medium focus:outline-none"
                         id="user-menu"
                         aria-haspopup="true"
                         aria-expanded="true"
                       >
-                        usuario
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M10 2C5.03 2 1 6.03 1 11C1 14.68 3.53 17.77 7 19V12H5V11C5 7.13 7.13 5 11 5C14.87 5 17 7.13 17 11V12H15V19C18.47 17.77 21 14.68 21 11C21 6.03 16.97 2 12 2H10Z"
-                        />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="h-5 w-5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M4 6h16M4 12h16M4 18h16"
+                          />
+                        </svg>
                       </button>
                     </div>
-                    {userMenuOpen && (
-                      <div
-                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="user-menu"
-                      >
-                        <Link
-                          to="/orders"
-                          className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        >
-                          Mis ordenes
-                        </Link>
-                        <Link
-                          to="/profile"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                        >
-                          Perfil
-                        </Link>
-                        <button
-                          onClick={handleLogout}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                        >
-                          Cerrar sesión
-                        </button>
-                      </div>
-                    )}
                   </div>
 
                   {userMenuOpen && (
@@ -173,6 +119,21 @@ const Navbar = () => {
                       >
                         Mis ordenes
                       </Link>
+
+                      <Link
+                        to="/superadmin"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+                      >
+                        SuperAdmin Panel
+                      </Link>
+
+                      <Link
+                        to="/admin"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+                      >
+                        Admin Panel
+                      </Link>
+
                       <button
                         onClick={handleLogout}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "

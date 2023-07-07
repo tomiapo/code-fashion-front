@@ -101,6 +101,8 @@ function App() {
 
         <Route path="/admin" element={<Admin />} />
 
+        <Route path="/add-product" element={<Admin />} />
+
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/superadmin" element={<SuperAdmin />} />

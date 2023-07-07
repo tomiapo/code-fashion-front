@@ -23,7 +23,6 @@ import Profile from "./components/Profile";
 
 import SuperAdmin from "./components/SuperAdmin";
 
-
 function App() {
   return (
     <div className="App">
@@ -53,7 +52,9 @@ function App() {
             <CartProvider>
               <ClickedProductContextProvider>
                 <ProductProvider>
-                  <ProductPreview />
+                  <div className="h-screen">
+                    <ProductPreview />
+                  </div>
                 </ProductProvider>
               </ClickedProductContextProvider>
             </CartProvider>
@@ -113,7 +114,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/superadmin" element={<SuperAdmin />} />
-
       </Routes>
 
       <Footer />

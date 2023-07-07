@@ -1,18 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import { CartContext } from "../context/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import AddToCartButton from "./AddToCartButton";
+import SearchBar from "./SearchBar";
 
 const ProductPreview = () => {
   const { addToCart } = useContext(CartContext);
-  const { products } = useContext(ProductContext);
+  const { products, searchBarParam, productPreview } =
+    useContext(ProductContext);
+
   const handleAddToCart = (product) => {
     addToCart(product);
   };
 
+  useEffect(() => {
+    productPreview();
+  }, [searchBarParam]);
+  console.log("param", searchBarParam);
+
   return (
+
     <div className="grid grid-cols-3 gap-4 relative shadow-lg py-4">
       {products.length === 0 ? (
         <p>No items to show</p>
@@ -39,6 +48,7 @@ const ProductPreview = () => {
         ))
       )}
     </div>
+
   );
 };
 

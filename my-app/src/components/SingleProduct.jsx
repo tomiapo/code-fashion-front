@@ -119,7 +119,7 @@ const SingleProduct = () => {
           <p className="text-gray-700 mb-2">{clickedProduct.description}</p>
           <p className="text-green-600 font-bold">${clickedProduct.price}</p>
           <p className="text-blue-500 mb-2">
-            Categoria: {clickedProduct.category_name}
+            Categorias: {clickedProduct.category_name.join(", ")}
           </p>
           <p className="text-gray-700 mb-4">Marca: {clickedProduct.brand}</p>
 
@@ -127,7 +127,7 @@ const SingleProduct = () => {
             className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
             onClick={handleAddToCart}
           >
-            Add to Cart
+            Agregar al carrito
           </button>
         </div>
       </div>
@@ -157,7 +157,7 @@ const SingleProduct = () => {
               onClick={handleAddReview}
               className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
             >
-              Add Review
+              Enviar valoracion
             </button>
           </div>
           <div className="mt-4">

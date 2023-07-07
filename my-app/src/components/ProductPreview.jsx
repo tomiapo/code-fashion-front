@@ -13,14 +13,14 @@ const ProductPreview = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 shadow-lg py-4">
+    <div className="grid grid-cols-3 gap-4 relative shadow-lg py-4">
       {products.length === 0 ? (
         <p>No items to show</p>
       ) : (
         products.map(({ id, name, description, price, image, brand }) => (
           <div
             key={name}
-            className="bg-white rounded-md shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105"
+            className="bg-white rounded-md relative shadow-md p-4 flex flex-col justify-between transition duration-300 ease-in-out transform hover:scale-105"
           >
             <Link to={`/product/${id}`}>
               <div>

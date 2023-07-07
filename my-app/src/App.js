@@ -51,9 +51,7 @@ function App() {
             <CartProvider>
               <ClickedProductContextProvider>
                 <ProductProvider>
-                  <div className="h-screen">
-                    <ProductPreview />
-                  </div>
+                  <ProductPreview />
                 </ProductProvider>
               </ClickedProductContextProvider>
             </CartProvider>

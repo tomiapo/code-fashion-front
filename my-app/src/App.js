@@ -16,7 +16,6 @@ import CheckoutConfirmed from "./components/CheckoutConfirmed";
 
 import { CartProvider } from "./context/CartContext";
 import ProductProvider from "./context/ProductContext";
-import OrderProvider from "./context/OrderContext";
 import Admin from "./components/Admin";
 
 import Profile from "./components/Profile";
@@ -100,14 +99,7 @@ function App() {
           }
         ></Route>
 
-        <Route
-          path="/orders"
-          element={
-            <OrderProvider>
-              <OrdersHistory />
-            </OrderProvider>
-          }
-        />
+        <Route path="/orders" element={<OrdersHistory />} />
 
         <Route path="/admin" element={<Admin />} />
 

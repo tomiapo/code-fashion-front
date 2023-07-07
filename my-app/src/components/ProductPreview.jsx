@@ -5,10 +5,11 @@ import { CartContext } from "../context/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import AddToCartButton from "./AddToCartButton";
 import SearchBar from "./SearchBar";
+import Categories from "./Categories";
 
 const ProductPreview = () => {
   const { addToCart } = useContext(CartContext);
-  const { products, searchBarParam, productPreview } =
+  const { products, searchBarParam, productPreview, selectedCategory } =
     useContext(ProductContext);
 
   const handleAddToCart = (product) => {
@@ -17,16 +18,17 @@ const ProductPreview = () => {
 
   useEffect(() => {
     productPreview();
-  }, [searchBarParam]);
+  }, [searchBarParam, selectedCategory]);
 
   return (
     <>
-      <div>
+      <div className="flex flex-row">
         <SearchBar />
+        <Categories />
       </div>
       <div className="grid grid-cols-3 gap-4 relative shadow-lg py-4">
         {products.length === 0 ? (
-          <p>No items to show</p>
+          <p>No se encuentran productos</p>
         ) : (
           products.map(({ id, name, description, price, image, brand }) => (
             <div

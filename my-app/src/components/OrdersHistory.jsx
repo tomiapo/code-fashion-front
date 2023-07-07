@@ -10,7 +10,7 @@ function OrdersHistory() {
       try {
         if (!isLoggedIn()) {
           console.log("tienes que loguearte");
-          return;
+          // return;
         }
         const user = getLoggedUser();
 

@@ -7,8 +7,11 @@ const Categories = () => {
   const [allCategories, setCategories] = useState([]);
   const { categoryHandler } = useContext(ProductContext);
 
-  useEffect(async () => {
-    setCategories(await getAllCategories());
+  useEffect(() => {
+    const categoriesSetter = async () => {
+      setCategories(await getAllCategories());
+    };
+    categoriesSetter();
   }, []);
 
   return (

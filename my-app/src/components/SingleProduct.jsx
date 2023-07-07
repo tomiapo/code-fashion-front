@@ -119,7 +119,7 @@ const SingleProduct = () => {
           <p className="text-gray-700 mb-2">{clickedProduct.description}</p>
           <p className="text-green-600 font-bold">${clickedProduct.price}</p>
           <p className="text-blue-500 mb-2">
-            Categorias: {clickedProduct.category_name.join(", ")}
+            Categorias: {clickedProduct.category_name?.join(", ")}
           </p>
           <p className="text-gray-700 mb-4">Marca: {clickedProduct.brand}</p>
 

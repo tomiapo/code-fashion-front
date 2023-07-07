@@ -75,7 +75,7 @@ const SuperAdmin = () => {
 
   return (
     <div className="bg-gray-100 py-4 px-6">
-      <h2 className="text-2xl font-bold mb-4">User Management</h2>
+      <h2 className="text-2xl font-bold mb-4">Registro de Usuarios</h2>
       {hasAccess ? (
         <div className="grid grid-cols-3 gap-4">
           {users.map((user) => (
@@ -109,7 +109,7 @@ const SuperAdmin = () => {
         </div>
       ) : (
         <div className="text-sm font-medium text-gray-900">
-          You do not have access to this page.
+          Oops! parece que no tenes permisos para ver esta pagina.
         </div>
       )}
     </div>
